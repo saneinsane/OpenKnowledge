@@ -9,7 +9,7 @@ export function remainingTime(originalDate) {
     return 'Endet in ' + dateDiff + ' Tagen';
   } else if (dateDiff === 1) {
     return 'Endet morgen um ' + endDate.format('HH:mm') + ' Uhr';
-  } else if (endDate.isSameOrBefore(currentDate)) {
+  } else if (endDate.isBefore(currentDate)) {
     return 'Endete am ' + endDate.format('DD.MM.YYYY, HH:mm') + ' Uhr';
   } else {
     return 'Endet heute um ' + endDate.format('HH:mm') + ' Uhr';

@@ -11,7 +11,7 @@ describe('remainingTime: ends today', () => {
   test('it should handle now', () => {
     const now = new Date('2020-05-20T08:38:00.000Z')
     expect(remainingTime(now))
-      .toEqual(`Endete am 20.05.2020, 08:38 Uhr`)
+      .toEqual(`Endet heute um 08:38 Uhr`)
   })
 
   test('it should handle +00:01', () => {

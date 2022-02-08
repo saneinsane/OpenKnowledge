@@ -11,7 +11,7 @@ describe('remainingTime: ends today', () => {
   test('it should handle now', () => {
     const now = new Date('2020-05-20T08:38:00.000Z')
     expect(remainingTime(now))
-      .toEqual(`Endet heute um 08:38 Uhr`)
+      .toEqual(`Endete am 20.05.2020, 08:38 Uhr`)
   })
 
   test('it should handle +00:01', () => {
@@ -42,16 +42,28 @@ describe('remainingTime: ends tomorrow', () => {
 })
 
 describe('remainingTime: day after tomorrow', () => {
-  test('it should handle 00:00 day after tomorrow', () => {
+  test('it should handle 00:00 in 2 days', () => {
     let startOfDayAfterTomorrow = new Date('2020-05-22T00:00:00.000Z');
     expect(remainingTime(startOfDayAfterTomorrow))
       .toEqual(`Endet in 2 Tagen`)
   })
 
-  test('it should handle 23:59 day after tomorrow', () => {
+  test('it should handle 23:59 in 2 days', () => {
     let endOfTomorrow = new Date('2020-05-22T23:59:59.000Z');
     expect(remainingTime(endOfTomorrow))
       .toEqual(`Endet in 2 Tagen`)
+  })
+
+  test('it should handle 00:00 in 3 days', () => {
+    let startOfDayAfterTomorrow = new Date('2020-05-23T00:00:00.000Z');
+    expect(remainingTime(startOfDayAfterTomorrow))
+      .toEqual(`Endet in 3 Tagen`)
+  })
+
+  test('it should handle 23:59 in 3 days', () => {
+    let endOfTomorrow = new Date('2020-05-23T23:59:59.000Z');
+    expect(remainingTime(endOfTomorrow))
+      .toEqual(`Endet in 3 Tagen`)
   })
 })
 
@@ -59,17 +71,17 @@ describe('remainingTime: ended today', () => {
   test('it should handle 00:00 today', () => {
     const startOfToday = new Date('2020-05-20T00:00:00.000Z')
     expect(remainingTime(startOfToday))
-      .toEqual(`Endete heute um 00:00 Uhr`)
+      .toEqual(`Endete am 20.05.2020, 00:00 Uhr`)
   })
 
   test('it should handle -00:01', () => {
     const oneSecondAgo = new Date('2020-05-20T08:37:59.000Z')
     expect(remainingTime(oneSecondAgo))
-      .toEqual(`Endete heute um 10:37 Uhr`)
+      .toEqual(`Endete am 20.05.2020, 08:37 Uhr`)
   })
 })
 
-describe('remainingTime: ended yesterday', () => {
+describe('remainingTime: ended before today', () => {
   test('it should handle 00:00 yesterday', () => {
     const startOfYesterday = new Date('2020-05-19T00:00:00.000Z')
     expect(remainingTime(startOfYesterday))
@@ -79,6 +91,6 @@ describe('remainingTime: ended yesterday', () => {
   test('it should handle 23:59 yesterday', () => {
     const endOfYesterday = new Date('2020-05-19T23:59:59.000Z')
     expect(remainingTime(endOfYesterday))
-      .toEqual(`Endete gestern um 23:59 Uhr`)
+      .toEqual(`Endete am 19.05.2020, 23:59 Uhr`)
   })
 })
